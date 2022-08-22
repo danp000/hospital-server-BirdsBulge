@@ -11,6 +11,9 @@ const app = express();
 // Configurar CORS
 app.use( cors() );
 
+// Lectura y parseo del body
+app.use( express.json() );
+
 
 // Base de datos
 dbConnect();
@@ -19,13 +22,8 @@ dbConnect();
 
 
 // Rutas
-app.get( '/', ( req, res ) => {
-
-  res.status(203).json({ ok: true, msg: 'Server running' });
-
-});
-
-
+app.use( '/api/usuarios', require('./routes/usuarios.routes') );
+app.use( '/api/login', require('./routes/auth.routes') );
 
 
 
