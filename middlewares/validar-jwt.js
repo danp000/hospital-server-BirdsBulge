@@ -9,10 +9,9 @@ const validarJWT = ( req, res, next ) => {
   if ( !token ) {
     return res.status(401).json({
       ok: false,
-      msg: 'No se encontro ningùn token en la petición'
+      msg: 'No se encontró ningùn token en la petición'
     });
   }
-
   try {
 
     const { uid } = jwt.verify( token, process.env.JWT_SECRET );
@@ -24,11 +23,8 @@ const validarJWT = ( req, res, next ) => {
     return res.status(401).json({
       ok: false,
       msg: 'Token inválido'
-    })
+    });
   }
-
-  
-
 }
 
 

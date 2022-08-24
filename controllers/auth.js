@@ -44,11 +44,7 @@ const login = async( req, res = response ) => {
       ok: false,
       msg: 'Error repentino, disculpen el inconveniente'
     });
-    
   }
-
-
-
 }
 
 

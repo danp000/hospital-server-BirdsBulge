@@ -20,14 +20,8 @@ const generarJWT = ( uid ) => {
       } else {
         resolve( tk );
       }
-
     });
-
-
-
   });
-
-  
 }
 
 

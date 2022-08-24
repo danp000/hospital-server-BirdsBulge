@@ -12,9 +12,7 @@ const validCamps = ( req, res = response, next ) => {
       errors: ers.mapped()
     });
   }
-
   next();
-
 }
 
 

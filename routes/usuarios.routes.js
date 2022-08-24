@@ -32,9 +32,7 @@ router.put( '/:id',
   ], editarUsuario );
 
 
-  router.delete( '/:id', validarJWT, borrarUsuario );
-
-
+router.delete( '/:id', validarJWT, borrarUsuario );
 
 
 

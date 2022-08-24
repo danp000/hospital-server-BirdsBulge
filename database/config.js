@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const dbConnect = async () => {
 
   try {
@@ -9,7 +10,6 @@ const dbConnect = async () => {
         useNewUrlParser: true,
       }
     );
-
     console.log(' < Database connected > ');
 
   } catch (er) {
