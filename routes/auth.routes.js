@@ -2,7 +2,7 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { login } = require('../controllers/auth');
+const { login, googleSignin } = require('../controllers/auth');
 const { validCamps } = require('../middlewares/validar-campos');
 
 
@@ -15,6 +15,13 @@ router.post( '/', [
   validCamps
 
 ], login);
+
+router.post( '/google', [
+
+  check('token', 'Token de google obligatorio').isJWT(),
+  validCamps
+
+], googleSignin);
 
 
 
