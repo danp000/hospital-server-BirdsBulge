@@ -20,9 +20,14 @@ router.post( '/',
     
   ], addHospital );
 
-router.put( '/:id', editarHospital );
+router.put( '/:id',[
+  validarJWT,
+  check('nombre', 'Designar un nombre es necesario').not().isEmpty(),
+  validCamps
 
-router.delete( '/:id', borrarHospital );
+], editarHospital );
+
+router.delete( '/:id', validarJWT, borrarHospital );
 
 
 

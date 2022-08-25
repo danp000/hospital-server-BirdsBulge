@@ -23,11 +23,15 @@ router.post( '/',
 
 router.put( '/:id', 
   [
+    validarJWT,
+    check('nombre', 'Especifica un nombre nuevo').not().isEmpty(),
+    check('hospital', 'El hospital id debe de ser válido').isMongoId(),
+    validCamps,
 
   ], editarOrnitologo );
 
 
-  router.delete( '/:id', borrarOrnitologo );
+  router.delete( '/:id', validarJWT, borrarOrnitologo );
 
 
 

@@ -37,20 +37,73 @@ const addHospital = async( req, res = response ) => {
   } 
 }
 
-const editarHospital = ( req, res = response ) => {
+const editarHospital = async( req, res = response ) => {
 
-  res.json({
-    ok: true,
-    msg: 'editHospitales'
-  });
+  const id = req.params.id;
+  const uid = req.uid;
+
+  try {
+    const hospital = await Hospital.findById(id);
+
+    if ( !hospital ) {
+
+      res.status(404).json({
+        ok: false,
+        msg: 'No se pudo encontrar un hospital con este id'
+      });
+    }
+
+    const campoNombre = req.body;
+
+    const hospitalEditado = await Hospital.findByIdAndUpdate(
+                       id, { campoNombre, usuario: uid }, 
+                                { new: true });
+
+    res.json({
+      ok: true,
+      msg: 'Hospital editado',
+      hospital: hospitalEditado
+    });
+    
+  } catch (er) {
+    console.log(er);
+    res.status(500).json({
+      ok: false,
+      msg: 'Error técnico, el administrador puede ayudarles'
+    }); 
+  }
 }
 
-const borrarHospital = ( req, res = response ) => {
+const borrarHospital = async( req, res = response ) => {
 
-  res.json({
-    ok: true,
-    msg: 'borrarHospitales'
-  });
+  const id = req.params.id;
+
+  try {
+    const hospital = await Hospital.findById(id);
+
+    if ( !hospital ) {
+
+      res.status(404).json({
+        ok: false,
+        msg: 'No se pudo encontrar un hospital con este id'
+      });
+    }
+
+    const hsopitalBorrado = await Hospital.findByIdAndDelete(id);
+
+    res.json({
+      ok: true,
+      msg: 'Hospital borrado',
+      hospital: hsopitalBorrado
+    });
+    
+  } catch (er) {
+    console.log(er);
+    res.status(500).json({
+      ok: false,
+      msg: 'Error técnico, el administrador puede ayudarles'
+    }); 
+  }
 }
 
 
